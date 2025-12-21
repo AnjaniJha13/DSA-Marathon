@@ -1,0 +1,18 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        String s = Integer.toString(n); 
+        
+        if (Integer.parseInt(s) == n){
+            System.out.println("Good job");
+        }else {
+            System.out.println("Wrong Answer");
+        }
+        
+    }
+}
