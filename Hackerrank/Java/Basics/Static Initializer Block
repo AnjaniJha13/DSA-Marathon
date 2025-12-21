@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+//Area of a parallelogram = Area = breadth * height;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int Breadth = sc.nextInt();
+        int height = sc.nextInt();
+        int Area = Breadth * height;
+        
+        // + * + & - * - = +
+        if (Breadth > 0 && height > 0 ){
+            System.out.println(Area);
+        }
+        // 0 * n or 0 * 0 = 0
+        if(height == 0 && Breadth == 0 ){
+            System.out.println(Area = 0);
+        }
+        // - * + & + * -
+        if (Breadth > 0 && height < 0 || height > 0 && Breadth < 0 ||Breadth < 0 && height < 0 || Breadth == 0 || height == 0) {
+            System.out.println("java.lang.Exception: Breadth and height must be positive");
+        }  
+  }
+}
