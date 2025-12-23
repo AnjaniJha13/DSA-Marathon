@@ -1,0 +1,55 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+    public static void main(String[] args){
+         Scanner sc = new Scanner(System.in);
+         int month = sc.nextInt();
+         int day = sc.nextInt();
+         int year = sc.nextInt();
+         
+         String getDay = findDay(month,day,year);
+         
+         System.out.println(getDay);
+    }
+    
+    public static String findDay(int month, int day, int year) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(year, month - 1, day); // 0 based index-month
+        
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); //week - 1 index( 1 - 1 = 0)
+
+        String[] days = {"SUNDAY","MONDAY" ,"TUESDAY" ,"WEDNESDAY" ,"THURSDAY","FRIDAY", "SATURDAY"};
+        
+        return days[dayOfWeek - 1];
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        int month = Integer.parseInt(firstMultipleInput[0]);
+
+        int day = Integer.parseInt(firstMultipleInput[1]);
+
+        int year = Integer.parseInt(firstMultipleInput[2]);
+
+        String res = Result.findDay(month, day, year);
+
+        bufferedWriter.write(res);
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
