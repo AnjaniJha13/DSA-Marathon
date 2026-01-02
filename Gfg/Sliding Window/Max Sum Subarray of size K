@@ -1,0 +1,24 @@
+class Solution {
+    public int maxSubarraySum(int[] arr, int k) {
+        
+        int n = arr.length;
+        int start = 0;
+        int end = k - 1;
+        int sum = 0;
+        int result = sum;
+        
+        for ( int i = 0; i <= end; i++){
+            sum += arr[i];
+        }
+             
+        while (end < n) {
+            result = Math.max(result, sum);
+            start++;
+            end++;
+            if (end == n) break;
+            sum = sum - arr[start - 1] + arr[end];
+        }
+            
+        return result;
+    }
+}
