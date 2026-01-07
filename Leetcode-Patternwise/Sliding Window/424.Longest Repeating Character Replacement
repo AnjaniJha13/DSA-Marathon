@@ -1,0 +1,29 @@
+class Solution {
+    public int characterReplacement(String s, int k) {
+        HashMap<Character,Integer> FreqMap = new HashMap<>();
+        int start = 0; 
+        int result = 0;
+        int n = s.length();
+        int maxCount = 0;
+        
+
+        for ( int end = 0; end < n; end++) {
+            char ch = s.charAt(end);
+            FreqMap.put(ch , FreqMap.getOrDefault(ch , 0) + 1);
+
+            //update maxcount in current window
+            maxCount = Math.max(maxCount ,FreqMap.get(ch));
+            
+            //If replacements needed exceed k,shrink window
+            while (((end - start) + 1) - maxCount > k) {
+                char startChar = s.charAt(start);
+                FreqMap.put(startChar , FreqMap.get(startChar) - 1);
+                start++;
+            }
+            //update result
+            result = Math.max((end - start + 1) , result);
+
+        }
+        return result;
+    }
+}
