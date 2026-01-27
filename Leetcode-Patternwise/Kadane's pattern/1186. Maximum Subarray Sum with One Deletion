@@ -1,0 +1,21 @@
+class Solution {
+    public int maximumSum(int[] arr) {
+        int n = arr.length;
+
+        int noDelete = arr[0];              
+        int oneDelete = Integer.MIN_VALUE;  
+        int result = arr[0];                
+
+        for (int i = 1; i < n; i++) {   
+            //prevent overflow 
+            if(oneDelete != Integer.MIN_VALUE) {   
+            oneDelete = Math.max(oneDelete + arr[i], noDelete);
+            } else {
+                oneDelete = noDelete;
+            }
+            noDelete = Math.max(noDelete + arr[i], arr[i]);
+            result = Math.max(result, Math.max(noDelete, oneDelete));
+        }
+        return result;
+    }
+}
