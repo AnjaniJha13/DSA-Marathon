@@ -1,0 +1,30 @@
+class Solution {
+    public int maxSubarraySumCircular(int[] nums) {
+        int n = nums.length;
+        int maxend = nums[0];
+        int ans1 = nums[0];
+        int sum = nums[0];
+
+        //straight array
+        for (int i = 1; i < n ; i++) {
+            sum += nums[i];
+            int v1 = nums[i];
+            int v2 = nums[i] + maxend;
+            maxend = Math.max(v1 , v2);
+            ans1 = Math.max(maxend , ans1);
+        }
+        //Circular array
+        int minsum = nums[0];
+        int minend = nums[0];
+        for ( int i = 1; i < n ; i++) {
+            int v3 = nums[i] + minend;
+            int v1 = nums[i];
+            minend = Math.min(v1,v3);
+            minsum = Math.min(minsum , minend);
+        }
+       
+        if (sum == minsum) return ans1;
+
+        return Math.max(ans1 , sum - minsum);
+    }
+}
