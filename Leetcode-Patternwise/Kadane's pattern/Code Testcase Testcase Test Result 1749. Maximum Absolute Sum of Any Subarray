@@ -1,0 +1,22 @@
+class Solution {
+    public int maxAbsoluteSum(int[] nums) {
+        int bestendmax = nums[0];
+        int bestendmin = nums[0];
+        int ansmax = nums[0];
+        int ansmin = nums[0];
+
+        for ( int i = 1 ; i < nums.length ; i++) {
+            int v1 = bestendmax + nums[i];
+            int v2 = bestendmin + nums[i];
+            int v3 = nums[i];
+
+            bestendmax = Math.max(v1,v3);
+            ansmax = Math.max(ansmax , bestendmax);
+
+            bestendmin = Math.min(v2,v3);
+            ansmin = Math.min(ansmin , bestendmin);
+        }
+        return Math.max(Math.abs(ansmax) , Math.abs(ansmin));
+    }
+
+}
