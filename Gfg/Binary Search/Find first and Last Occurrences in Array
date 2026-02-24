@@ -1,0 +1,46 @@
+class Solution {
+    ArrayList<Integer> find(int arr[], int x) {
+        ArrayList<Integer> result = new ArrayList<>();
+        int low = 0;
+        int high = arr.length - 1;
+        int first = -1;
+        int last = -1;
+        
+        //first occurrences
+        while(low <= high) {
+            int mid = low + (high - low) /2;
+            
+            if(arr[mid] == x){
+                first = mid;
+                high = mid - 1; //first occurrence
+            }else if(arr[mid] < x) {
+                low = mid + 1;
+            }else {
+                high = mid - 1;
+            }
+        }
+        
+        //last occurrences
+        //reset low and high
+        low = 0;
+        high = arr.length - 1;
+        while(low <= high) {
+            int mid = low + (high - low) /2;
+            
+            if(arr[mid] == x){
+                last = mid;
+                low = mid + 1; //last occurrence
+            }else if(arr[mid] < x) {
+                low = mid + 1;
+            }else {
+                high = mid - 1;
+            }
+        }
+        
+        
+        result.add(first);
+        result.add(last);
+        return result;
+        
+    }
+}
