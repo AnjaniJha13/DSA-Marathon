@@ -1,0 +1,51 @@
+import java.util.Arrays;
+
+class Solution {
+
+    public int aggressiveCows(int[] stalls, int k) {
+        
+        int n = stalls.length;
+        Arrays.sort(stalls);
+        
+        int low = 1;                          
+        int high = stalls[n - 1] - stalls[0];
+        int result = -1;
+        
+        while(low <= high) {
+            
+            int guess = low + (high - low) / 2;
+            
+            if(CanplaceCows(stalls, n, k, guess)) {
+                result = guess;
+                low = guess + 1;       // for bigger distance
+            } else {
+                high = guess - 1;
+            }
+        }
+        
+        return result;
+    }
+    
+    
+    public boolean CanplaceCows(int[] stalls, int n, int k, int guess) {
+        
+        int cows = 1;
+        int prevpos = stalls[0];
+        
+        for(int i = 1; i < n; i++) {
+            
+            int distance = stalls[i] - prevpos;
+            
+            if(distance >= guess) {
+                cows++;
+                prevpos = stalls[i];
+            }
+            
+            if(cows >= k) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+}
